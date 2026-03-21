@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Direct Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 🔝 Navbar -->
+    <header class="navbar">
+        <h2 class="logo">🌱 FarmDirect</h2>
+
+        <input type="text" placeholder="Search products..." class="search">
+
+        <div class="nav-right">
+            <button class="btn">Sign In</button>
+        </div>
+    </header>
+
+    <!-- 🧭 Categories -->
+    <nav class="categories">
+        <a class="active">All Products</a>
+        <a href="vegetable.html" class="active">Vegetables</a>
+        <a href="grains&cereals.html" class="active">Grains & Cereals</a>
+        <a href="fruits.html" class="active">Fruits</a>
+        <a href="dairy.html" class="active">Dairy</a>
+
+    </nav>
+
+    <!-- 🌾 Hero Section -->
+    <section class="hero">
+        <h1>Farm Fresh Products</h1>
+        <h3>Direct from Farmers</h3>
+
+        <p>
+            Discover premium vegetables, grains, pulses and fresh produce sourced
+            directly from farmers. Fresh, organic and delivered to your doorstep.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary">Shop Now</button>
+            <button class="secondary">Become a Vendor</button>
+        </div>
+
+
+    </section>
+
+    <!-- 🛒 Products Section -->
+    <section class="products-section">
+        <h2>All Products</h2>
+
+        <div id="products" class="products-grid">
+            <!-- Products will come from JS -->
+        </div>
+    </section>
+
+    <div id="cart-icon" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
+
+    <div id="cart-section">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: ₹0</p>
+
+        <button onclick="checkout()">Checkout</button>
+
+        <div id="payment-section" style="display:none;">
+            <h4>Select Payment Method</h4>
+
+            <button onclick="placeOrder('COD')">Cash on Delivery</button>
+            <button onclick="placeOrder('ONLINE')">Online Payment</button>
+        </div>
+    </div>
+
+
+    <!-- 🤖 Floating AI Button -->
+    <div id="ai-button" onclick="toggleChat()">
+        <img src="chatbot.gif" width="60">
+    </div>
+
+    <!-- 💬 Chat Window -->
+    <div id="ai-chatbox">
+        <div class="chat-header">
+            AI Assistant
+            <span onclick="toggleChat()">✖</span>
+        </div>
+
+        <div id="chat-content"></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask something...">
+
+            <button onclick="sendMessage()">Send</button>
+
+            <button onclick="startVoice()">🎤</button>
+
+            <button onclick="speakLast()">🔊</button>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
