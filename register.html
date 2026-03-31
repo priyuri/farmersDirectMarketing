@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h2>Register</h2>
+
+        <form id="form">
+            <input type="text" id="name" placeholder="Full Name" class="msgInput"><br><br>
+            <input type="text" id="address" placeholder="Address" class="msgInput"><br><br>
+
+            Gender:
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <br><br>
+
+            <input type="email" id="email" placeholder="Email" class="msgInput"><br><br>
+            <input type="password" id="password" placeholder="Password" class="msgInput"><br><br>
+
+            <button type="submit" id="btn">Register</button>
+            <input type="reset" value="Reset" id="reset">
+        </form>
+
+        <p id="msg"></p>
+
+        <script>
+            const form = document.getElementById("form");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const fullName = document.getElementById("name").value;
+                const address = document.getElementById("address").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+                const res = await fetch("http://localhost:5000/api/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ fullName, address, gender, email, password })
+                });
+
+                const data = await res.text();
+                document.getElementById("msg").innerText = data;
+            });
+        </script>
+
+    </div>
+
+</body>
+
+</html>

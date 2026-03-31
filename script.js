@@ -28,21 +28,7 @@ const productsData = [
   { name: "Natural Cheese", price: 30, img: "d6.jpeg" }
 ];
 
-// function displayProducts(products) {
-//   const container = document.getElementById("products");
-//   container.innerHTML = "";
 
-//   products.forEach(p => {
-//     container.innerHTML += `
-//       <div class="card">
-//         <img src="${p.img}">
-//         <h3>${p.name}</h3>
-//         <p>₹${p.price}/kg</p>
-//         <button>Add to Cart</button>
-//       </div>
-//     `;
-//   });
-// }
 
 function displayProducts(products) {
   const container = document.getElementById("products");
@@ -67,6 +53,17 @@ var cart = [];
 
 // Add to cart
 function addToCart(name, price) {
+
+  // 🔐 Login check
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    alert("Please login first");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // अगर login है तो add करो
   cart.push({ name: name, price: price });
 
   updateCart();
@@ -106,6 +103,28 @@ function checkout() {
 
   document.getElementById("payment-section").style.display = "block";
 }
+
+//login logout
+function handleLoginLogout() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (isLoggedIn) {
+    localStorage.removeItem("isLoggedIn");
+    alert("Logged out successfully");
+    window.location.href = "index.html";
+  } else {
+    window.location.href = "login.html";
+  }
+}
+
+//navbar 
+window.onload = function () {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (isLoggedIn) {
+    document.getElementById("signIn").innerText = "Logout";
+  }
+};
 
 // Place order
 function placeOrder(method) {
@@ -203,3 +222,26 @@ function speakLast() {
   }
 }
 
+
+//sign up page
+function signup() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  fetch("http://localhost:3000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      password: password
+    })
+  })
+    .then(res => res.text())
+    .then(data => {
+      alert(data);
+    });
+}

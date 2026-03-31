@@ -13,6 +13,7 @@ body {
     background: white;
 }
 
+
 .logo {
     color: green;
 }
@@ -26,6 +27,7 @@ body {
 
 .nav-right {
     padding: 0 120px;
+    gap: 10px;
 }
 
 .nav-right .btn {
@@ -34,6 +36,10 @@ body {
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
+}
+
+#signIn{
+    right: 100px;
 }
 
 /* Categories */
@@ -212,10 +218,11 @@ body {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 👈 4 per row */
+    /* 👈 4 per row  */
     gap: 10px;
     padding: 20px;
 }
+
 
 /* Prevent overflow */
 body {

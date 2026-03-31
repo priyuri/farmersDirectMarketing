@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Login</h2>
+
+        <form id="loginForm">
+            <input type="text" id="name" placeholder="Full Name" class="msgInput"><br><br>
+            <input type="password" id="password" placeholder="Password" class="msgInput"><br><br>
+
+            <a href="index.html"><button type="submit" id="login">Login</button></a>
+
+        </form>
+
+        <p id="msg"></p>
+
+        <script>
+            const form = document.getElementById("loginForm");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const fullName = document.getElementById("name").value;
+                const password = document.getElementById("password").value;
+
+                const res = await fetch("http://localhost:5000/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ fullName, password })
+                });
+
+                const data = await res.text();
+                document.getElementById("msg").innerText = data;
+
+                if (data === "Login Success") {
+                    localStorage.setItem("isLoggedIn", "true");
+                    window.location.href = "index.html";
+                }
+                else {
+                    alert("Invalid Credencials");
+                }
+            });
+        </script>
+
+    </div>
+
+</body>
+
+</html>
