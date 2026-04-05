@@ -29,7 +29,7 @@
 
         <p id="msg"></p>
 
-        <script>
+        <!-- <script>
             const form = document.getElementById("form");
 
             form.addEventListener("submit", async (e) => {
@@ -54,6 +54,65 @@
 
                 const data = await res.text();
                 document.getElementById("msg").innerText = data;
+            });
+        </script> -->
+
+        <script>
+            const form = document.getElementById("form");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const fullName = document.getElementById("name").value.trim();
+                const address = document.getElementById("address").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+                const msg = document.getElementById("msg");
+
+                // 🔴 VALIDATION START
+
+                if (!fullName || !address || !email || !password || !gender) {
+                    msg.innerText = "All fields are required ❗";
+                    msg.style.color = "red";
+                    return;
+                }
+
+                // Email format check
+                if (!email.includes("@") || !email.includes(".")) {
+                    msg.innerText = "Invalid email format ❗";
+                    msg.style.color = "red";
+                    return;
+                }
+
+                // Password length check
+                if (password.length < 6) {
+                    msg.innerText = "Password must be at least 6 characters ❗";
+                    msg.style.color = "red";
+                    return;
+                }
+
+                // Name validation (no numbers)
+                if (/\d/.test(fullName)) {
+                    msg.innerText = "Name should not contain numbers ❗";
+                    msg.style.color = "red";
+                    return;
+                }
+
+                // 🔵 If all valid → send data
+                const res = await fetch("http://localhost:5000/api/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ fullName, address, gender, email, password })
+                });
+
+                const data = await res.text();
+
+                msg.innerText = data;
+                msg.style.color = "green";
             });
         </script>
 
