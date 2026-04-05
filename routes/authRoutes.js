@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 
 
-// ✅ REGISTER
+// ✅ REGISTER Function to add new user 
 router.post("/register", async (req, res) => {
     const { fullName, address, gender, email, password } = req.body;
 
