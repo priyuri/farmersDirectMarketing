@@ -1,6 +1,6 @@
 const productsData = [
   { name: "Tomato", price: 20, img: "p1.jpg" },
-  { name: "Potato", price: 15, img: "p2.jpg" },
+  { name: "Potato", price: 15, img: "p9.jpg" },
   { name: "Onion", price: 25, img: "p3.jpg" },
   { name: "Pumpkin", price: 30, img: "p4.jpeg" },
   { name: "Cabbage", price: 30, img: "p6.webp" },
@@ -63,7 +63,7 @@ function addToCart(name, price) {
     return;
   }
 
-  // अगर login है तो add करो
+
   cart.push({ name: name, price: price });
 
   updateCart();
@@ -180,6 +180,11 @@ function getBotReply(msg) {
   if (msg.indexOf("hello") !== -1) return "Hello! How Can I Assist You?";
   if (msg.indexOf("name") !== -1) return "I am AI assistent 🤖";
   if (msg.indexOf("bye") !== -1) return "Bye 👋";
+  if (msg.indexOf("price of tomato") !== -1) return "The price of tomato is 20 rupees per kg";
+  if (msg.indexOf("price of potato") !== -1) return "The price of potato is 15 rupees per kg";
+  if (msg.indexOf("price of onion") !== -1) return "The price of onion is 25 rupees per kg";
+
+
 
   return "I did'nt understand 😅";
 }
@@ -189,7 +194,7 @@ function startVoice() {
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   if (!SpeechRecognition) {
-    alert("Browser voice support nahi karta");
+    alert("Browser does not support voice");
     return;
   }
 

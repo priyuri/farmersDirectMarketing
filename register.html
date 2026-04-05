@@ -29,33 +29,6 @@
 
         <p id="msg"></p>
 
-        <!-- <script>
-            const form = document.getElementById("form");
-
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
-
-                const fullName = document.getElementById("name").value;
-                const address = document.getElementById("address").value;
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
-
-                const gender = document.querySelector('input[name="gender"]:checked')?.value;
-
-                const res = await fetch("http://localhost:5000/api/auth/register", {
-
-
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ fullName, address, gender, email, password })
-                });
-
-                const data = await res.text();
-                document.getElementById("msg").innerText = data;
-            });
-        </script> -->
 
         <script>
             const form = document.getElementById("form");
@@ -71,7 +44,7 @@
 
                 const msg = document.getElementById("msg");
 
-                // 🔴 VALIDATION START
+                //  VALIDATION 
 
                 if (!fullName || !address || !email || !password || !gender) {
                     msg.innerText = "All fields are required ❗";

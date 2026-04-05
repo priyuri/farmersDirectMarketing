@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 
 
-// ✅ REGISTER Function to add new user 
+//  REGISTER Function to add new user 
 router.post("/register", async (req, res) => {
     const { fullName, address, gender, email, password } = req.body;
 
@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
 });
 
 
-// ✅ LOGIN (name + password)
+//  LOGIN (name + password)
 router.post("/login", async (req, res) => {
     const { fullName, password } = req.body;
 
